@@ -10,7 +10,7 @@ const [home, trade, css, client, worker, wrangler, sitemap, robots] = await Prom
 ]);
 const failures=[]; const warnings=[];
 const count=(s,r)=>(s.match(r)||[]).length;
-const socialName="rollup-mercuryo-skyline-cb84f5f7-1280.webp";
+const socialName="swaggy-agency-corporate-merch-social-2f4d3c04-960.jpg";
 const socialUrl=`https://usaeventpartner.com/assets/images/${socialName}`;
 
 function checkPage({source,name,canonical,faqCount}){
@@ -33,8 +33,10 @@ function checkPage({source,name,canonical,faqCount}){
   }catch{ failures.push(`${name} structured data is invalid JSON.`); }
   for(const marker of [
     `property="og:image" content="${socialUrl}"`, `property="og:image:secure_url" content="${socialUrl}"`,
-    'property="og:image:type" content="image/webp"', 'property="og:image:width" content="1280"', 'property="og:image:height" content="720"',
-    'name="twitter:card" content="summary_large_image"'
+    'property="og:image:type" content="image/jpeg"', 'property="og:image:width" content="960"', 'property="og:image:height" content="504"',
+    'property="og:image:alt" content="SWAGGY Agency corporate merchandise roll-up display"',
+    'name="twitter:card" content="summary_large_image"', `name="twitter:image" content="${socialUrl}"`,
+    'name="twitter:image:alt" content="SWAGGY Agency corporate merchandise roll-up display"'
   ]) if(!source.includes(marker)) failures.push(`${name} social metadata incomplete: ${marker}`);
 }
 
@@ -43,7 +45,7 @@ checkPage({source:trade,name:"Trade show page",canonical:"https://usaeventpartne
 
 for(const phrase of ["You bring the event. We handle the US.","Everything around your US event.","US EVENT CONCIERGE","LAST-MINUTE EVENT SUPPORT"]) if(!home.includes(phrase)) failures.push(`Homepage missing approved positioning: ${phrase}`);
 if(count(home,/class="service-card"/g)!==8)failures.push("Homepage must contain eight service cards.");
-if(count(home,/class="project-card /g)!==6)failures.push("Homepage must contain six project cards.");
+if(count(home,/class="project-card /g)!==7)failures.push("Homepage must contain seven project cards.");
 if(count(home,/class="reason-card"/g)!==4)failures.push("Homepage must contain four local-partner reasons.");
 if(count(home,/class="process-step"/g)!==5)failures.push("Homepage must contain five process steps.");
 if(!home.includes('data-observe-event="project_gallery_view"'))failures.push("Project gallery analytics observer is missing.");
@@ -62,7 +64,7 @@ if(process.env.REQUIRE_GA4==="1"&&!ga)failures.push("Production check requires G
 for(const color of ["#10233f","#173e6d","#1c8c86","#dcece8","#f7f5ef","#c84232"]) if(!css.toLowerCase().includes(color))failures.push(`Selected 1+3 palette missing ${color}.`);
 if(css.includes("border-radius: 999px"))failures.push("Pill-shaped 999px radii are not allowed in selected design.");
 
-const imageNames=gallery.flatMap(({image,widths})=>widths.flatMap((width)=>[`${image}-${width}.webp`,`${image}-${width}.jpg`]));
+const imageNames=[...gallery.flatMap(({image,widths})=>widths.flatMap((width)=>[`${image}-${width}.webp`,`${image}-${width}.jpg`])),socialName];
 for(const name of imageNames){try{await access(path.join(root,"dist/assets/images",name));}catch{failures.push(`Missing optimized image: ${name}`);}}
 
 if(!sitemap.includes("https://usaeventpartner.com/</loc>")||!sitemap.includes("https://usaeventpartner.com/trade-show-support-us/"))failures.push("Sitemap missing production URL.");

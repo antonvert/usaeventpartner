@@ -23,7 +23,8 @@ const wideGallerySizes = "(max-width: 560px) calc(100vw - 24px), (max-width: 820
 const portraitGallerySizes = "(max-width: 560px) calc(100vw - 24px), (max-width: 820px) calc(50vw - 17px), (max-width: 1512px) calc(33vw - 21px), 480px";
 const conciergeSizes = "(max-width: 1100px) min(calc(100vw - 24px), 960px), (max-width: 1512px) 56vw, 830px";
 const gallerySizes = (item) => item.className === "project-card--wide" ? wideGallerySizes : portraitGallerySizes;
-const socialImage = `${site.url}${largestImageUrl(gallery[0], "webp")}`;
+const socialImage = `${site.url}/assets/images/swaggy-agency-corporate-merch-social-2f4d3c04-960.jpg`;
+const socialImageAlt = "SWAGGY Agency corporate merchandise roll-up display";
 
 const picture = ({ item, sizes = gallerySizes(item), eager = false, className = "" }) => `
 <picture class="${className}">
@@ -172,11 +173,13 @@ function documentShell({ title, description, canonical, body, schemaData, preloa
   <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="${socialImage}">
   <meta property="og:image:secure_url" content="${socialImage}">
-  <meta property="og:image:type" content="image/webp">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="720">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="960">
+  <meta property="og:image:height" content="504">
+  <meta property="og:image:alt" content="${socialImageAlt}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="${socialImage}">
+  <meta name="twitter:image:alt" content="${socialImageAlt}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   ${preloadTag}
   <link rel="stylesheet" href="/assets/styles.css?v=${version}">

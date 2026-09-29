@@ -131,6 +131,16 @@ export const gallery = [
     client: "Incymo.AI",
     type: "Event giveaway",
     className: "project-card--portrait"
+  },
+  {
+    image: "swaggy-agency-merch-display-180c9c30",
+    widths: [480, 720, 960],
+    width: 960,
+    height: 1280,
+    alt: "SWAGGY Agency corporate merchandise and event kits displayed with a branded roll-up banner",
+    client: "SWAGGY Agency",
+    type: "Corporate merch & event kits",
+    className: "project-card--portrait"
   }
 ];
 
