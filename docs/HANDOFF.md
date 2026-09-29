@@ -6,7 +6,7 @@
 - focused `/trade-show-support-us/` landing page
 - responsive 1+3 design system
 - optimized WebP photography supplied for the project
-- 1200×630 social preview
+- WebP social preview using the New York hero image
 - canonical tags and social metadata
 - Organization / WebSite / WebPage / Service / FAQ structured data
 - sitemap and robots
