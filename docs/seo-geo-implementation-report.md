@@ -66,7 +66,7 @@ This gives search engines and answer systems enough factual context to summarize
 - the production build serves the optimized full-size assets directly
 - hero image is preloaded and marked `fetchpriority=high`
 - below-fold imagery uses lazy loading
-- social preview is a dedicated 1200×630 JPEG
+- the optimized New York hero also supplies the social preview
 - long-term immutable cache headers apply to `/assets/*`
 
 ## Measurement plan
