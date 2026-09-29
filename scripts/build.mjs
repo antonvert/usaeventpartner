@@ -15,12 +15,20 @@ const version = createHash("sha256").update(stylesSource).update(scriptSource).d
 const esc = (value) => String(value)
   .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
   .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-const imageUrl = (name) => `/assets/images/${name}.webp`;
-const socialImage = `${site.url}/assets/images/hero-new-york-event-support.webp`;
+const imageUrl = (name, width, format = "webp") => `/assets/images/${name}-${width}.${format}`;
+const imageSrcset = (item, format) => item.widths.map((width) => `${imageUrl(item.image, width, format)} ${width}w`).join(", ");
+const largestImageUrl = (item, format) => imageUrl(item.image, item.widths.at(-1), format);
+const heroSizes = "(max-width: 1100px) calc(100vw - 24px), (max-width: 1512px) 49vw, 725px";
+const wideGallerySizes = "(max-width: 560px) calc(100vw - 24px), (max-width: 820px) calc(50vw - 17px), (max-width: 1512px) calc(66vw - 21px), 980px";
+const portraitGallerySizes = "(max-width: 560px) calc(100vw - 24px), (max-width: 820px) calc(50vw - 17px), (max-width: 1512px) calc(33vw - 21px), 480px";
+const conciergeSizes = "(max-width: 1100px) min(calc(100vw - 24px), 960px), (max-width: 1512px) 56vw, 830px";
+const gallerySizes = (item) => item.className === "project-card--wide" ? wideGallerySizes : portraitGallerySizes;
+const socialImage = `${site.url}${largestImageUrl(gallery[0], "webp")}`;
 
-const picture = ({ item, eager = false, className = "" }) => `
+const picture = ({ item, sizes = gallerySizes(item), eager = false, className = "" }) => `
 <picture class="${className}">
-  <img src="${imageUrl(item.image)}" alt="${esc(item.alt)}" width="${item.width}" height="${item.height}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">
+  <source type="image/webp" srcset="${imageSrcset(item, "webp")}" sizes="${sizes}">
+  <img src="${largestImageUrl(item, "jpg")}" srcset="${imageSrcset(item, "jpg")}" sizes="${sizes}" alt="${esc(item.alt)}" width="${item.width}" height="${item.height}" ${eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async">
 </picture>`;
 
 const brand = () => `
@@ -147,7 +155,7 @@ function schema({ url, title, description, faqItems, serviceName }) {
 }
 
 function documentShell({ title, description, canonical, body, schemaData, preload }) {
-  const preloadTag = preload ? `<link rel="preload" as="image" href="${imageUrl(preload.image)}">` : "";
+  const preloadTag = preload ? `<link rel="preload" as="image" type="image/webp" href="${largestImageUrl(preload, "webp")}" imagesrcset="${imageSrcset(preload, "webp")}" imagesizes="${heroSizes}">` : "";
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -165,8 +173,8 @@ function documentShell({ title, description, canonical, body, schemaData, preloa
   <meta property="og:image" content="${socialImage}">
   <meta property="og:image:secure_url" content="${socialImage}">
   <meta property="og:image:type" content="image/webp">
-  <meta property="og:image:width" content="520">
-  <meta property="og:image:height" content="292">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="${socialImage}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -208,7 +216,7 @@ const homepage = documentShell({
           <ul class="proof-line"><li>Trade shows</li><li>Activations</li><li>Merchandise</li><li>On-site support</li></ul>
         </div>
         <div class="hero__visual">
-          ${picture({ item: gallery[0], eager: true, className: "hero__picture" }).trim()}
+          ${picture({ item: gallery[0], sizes: heroSizes, eager: true, className: "hero__picture" }).trim()}
           <div class="hero__caption"><span>Selected production work</span><strong>Mercuryo · Event branding · New York</strong></div>
         </div>
       </section>
@@ -246,7 +254,7 @@ const homepage = documentShell({
           <a class="button button--navy" href="#brief" data-event="concierge_cta_click">Book Local Support ↗</a>
         </div>
         <div class="concierge__visual">
-          <img src="${imageUrl("mercuryo-event-activation-dinner")}" alt="Branded hospitality event setup for Mercuryo" width="960" height="1280" loading="lazy" decoding="async">
+          ${picture({ item: gallery[1], sizes: conciergeSizes, className: "concierge__picture" }).trim()}
           <div class="concierge__stamp"><strong>Daily · weekly · project-based</strong><span>A flexible local support layer for international marketing, PR and event teams.</span></div>
         </div>
       </section>
@@ -305,7 +313,7 @@ const tradeHtml = documentShell({
           <div class="hero__actions"><a class="button button--light" href="#brief" data-event="hero_cta_click">Send Your Booth Brief ↗</a><a class="button button--outline" href="/#work">See Production Work</a></div>
           <ul class="proof-line"><li>Booth production</li><li>Local crews</li><li>Freight coordination</li><li>On-site support</li></ul>
         </div>
-        <div class="hero__visual">${picture({ item: gallery[0], eager: true, className: "hero__picture" }).trim()}<div class="hero__caption"><span>US exhibitor support</span><strong>One local operating layer</strong></div></div>
+        <div class="hero__visual">${picture({ item: gallery[0], sizes: heroSizes, eager: true, className: "hero__picture" }).trim()}<div class="hero__caption"><span>US exhibitor support</span><strong>One local operating layer</strong></div></div>
       </section>
 
       <section class="section vertical-intro">

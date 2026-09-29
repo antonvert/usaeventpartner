@@ -1,5 +1,6 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
+import { gallery } from "../src/content.mjs";
 
 const root = process.cwd();
 const read = (p) => readFile(path.join(root,p),"utf8");
@@ -9,7 +10,7 @@ const [home, trade, css, client, worker, wrangler, sitemap, robots] = await Prom
 ]);
 const failures=[]; const warnings=[];
 const count=(s,r)=>(s.match(r)||[]).length;
-const socialName="hero-new-york-event-support.webp";
+const socialName="rollup-mercuryo-skyline-cb84f5f7-1280.webp";
 const socialUrl=`https://usaeventpartner.com/assets/images/${socialName}`;
 
 function checkPage({source,name,canonical,faqCount}){
@@ -32,7 +33,7 @@ function checkPage({source,name,canonical,faqCount}){
   }catch{ failures.push(`${name} structured data is invalid JSON.`); }
   for(const marker of [
     `property="og:image" content="${socialUrl}"`, `property="og:image:secure_url" content="${socialUrl}"`,
-    'property="og:image:type" content="image/webp"', 'property="og:image:width" content="520"', 'property="og:image:height" content="292"',
+    'property="og:image:type" content="image/webp"', 'property="og:image:width" content="1280"', 'property="og:image:height" content="720"',
     'name="twitter:card" content="summary_large_image"'
   ]) if(!source.includes(marker)) failures.push(`${name} social metadata incomplete: ${marker}`);
 }
@@ -47,6 +48,8 @@ if(count(home,/class="reason-card"/g)!==4)failures.push("Homepage must contain f
 if(count(home,/class="process-step"/g)!==5)failures.push("Homepage must contain five process steps.");
 if(!home.includes('data-observe-event="project_gallery_view"'))failures.push("Project gallery analytics observer is missing.");
 if(!home.includes('fetchpriority="high"')||!home.includes('rel="preload" as="image"'))failures.push("Hero image priority is not configured.");
+if(!home.includes('type="image/webp"')||!home.includes('srcset=')||!home.includes('sizes='))failures.push("Responsive WebP/JPEG picture markup is missing.");
+if(!home.includes('imagesrcset=')||!home.includes('imagesizes='))failures.push("Responsive hero preload is incomplete.");
 if(count(home,/loading="lazy"/g)<6)failures.push("Below-fold photography must be lazy loaded.");
 
 for(const event of ["hero_cta_click","header_cta_click","form_start","form_submit","telegram_click","email_click","project_gallery_view","service_cta_click","emergency_cta_click"]) if(!home.includes(event)&&!client.includes(event))failures.push(`Analytics event missing: ${event}`);
@@ -58,13 +61,7 @@ if(process.env.REQUIRE_GA4==="1"&&!ga)failures.push("Production check requires G
 for(const color of ["#10233f","#173e6d","#1c8c86","#dcece8","#f7f5ef","#c84232"]) if(!css.toLowerCase().includes(color))failures.push(`Selected 1+3 palette missing ${color}.`);
 if(css.includes("border-radius: 999px"))failures.push("Pill-shaped 999px radii are not allowed in selected design.");
 
-const imageNames=[
-"hero-new-york-event-support.webp",
-"mercuryo-event-activation-dinner.webp",
-"mercuryo-event-kit-table.webp",
-"mercuryo-payment-event-materials.webp",
-"indomitable-games-apparel.webp",
-"incymo-ai-event-giveaway.webp"];
+const imageNames=gallery.flatMap(({image,widths})=>widths.flatMap((width)=>[`${image}-${width}.webp`,`${image}-${width}.jpg`]));
 for(const name of imageNames){try{await access(path.join(root,"dist/assets/images",name));}catch{failures.push(`Missing optimized image: ${name}`);}}
 
 if(!sitemap.includes("https://usaeventpartner.com/</loc>")||!sitemap.includes("https://usaeventpartner.com/trade-show-support-us/"))failures.push("Sitemap missing production URL.");
