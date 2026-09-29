@@ -43,7 +43,7 @@ function checkPage({source,name,canonical,faqCount}){
 checkPage({source:home,name:"Homepage",canonical:"https://usaeventpartner.com/",faqCount:7});
 checkPage({source:trade,name:"Trade show page",canonical:"https://usaeventpartner.com/trade-show-support-us/",faqCount:4});
 
-for(const phrase of ["You bring the event. We handle the US.","Everything around your US event.","US EVENT CONCIERGE","LAST-MINUTE EVENT SUPPORT"]) if(!home.includes(phrase)) failures.push(`Homepage missing approved positioning: ${phrase}`);
+for(const phrase of ["Your local event team in the US.","Use one service. Or hand over the whole US side.","US EVENT CONCIERGE","LAST-MINUTE EVENT SUPPORT"]) if(!home.includes(phrase)) failures.push(`Homepage missing approved positioning: ${phrase}`);
 if(count(home,/class="service-card"/g)!==8)failures.push("Homepage must contain eight service cards.");
 if(count(home,/class="project-card /g)!==7)failures.push("Homepage must contain seven project cards.");
 if(count(home,/class="reason-card"/g)!==4)failures.push("Homepage must contain four local-partner reasons.");
