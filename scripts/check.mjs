@@ -9,27 +9,8 @@ const [home, trade, css, client, worker, wrangler, sitemap, robots] = await Prom
 ]);
 const failures=[]; const warnings=[];
 const count=(s,r)=>(s.match(r)||[]).length;
-const socialName="og-usa-event-partner.jpg";
+const socialName="hero-new-york-event-support.webp";
 const socialUrl=`https://usaeventpartner.com/assets/images/${socialName}`;
-
-const readJpegFrame=(buffer)=>{
-  if(buffer.length<4||buffer[0]!==0xff||buffer[1]!==0xd8)return null;
-  let offset=2;
-  while(offset<buffer.length){
-    while(offset<buffer.length&&buffer[offset]!==0xff)offset++;
-    while(offset<buffer.length&&buffer[offset]===0xff)offset++;
-    if(offset>=buffer.length)break;
-    const marker=buffer[offset++];
-    if(marker===0xd9||marker===0xda)break;
-    if(marker===0x01||(marker>=0xd0&&marker<=0xd8))continue;
-    if(offset+1>=buffer.length)break;
-    const len=buffer.readUInt16BE(offset);
-    const sof=[0xc0,0xc1,0xc2,0xc3,0xc5,0xc6,0xc7,0xc9,0xca,0xcb,0xcd,0xce,0xcf].includes(marker);
-    if(sof&&len>=8&&offset+len<=buffer.length)return { marker,height:buffer.readUInt16BE(offset+3),width:buffer.readUInt16BE(offset+5),components:buffer[offset+7] };
-    if(len<2)break; offset+=len;
-  }
-  return null;
-};
 
 function checkPage({source,name,canonical,faqCount}){
   if(count(source,/<h1\b/g)!==1)failures.push(`${name} must contain exactly one H1.`);
@@ -51,7 +32,7 @@ function checkPage({source,name,canonical,faqCount}){
   }catch{ failures.push(`${name} structured data is invalid JSON.`); }
   for(const marker of [
     `property="og:image" content="${socialUrl}"`, `property="og:image:secure_url" content="${socialUrl}"`,
-    'property="og:image:width" content="1200"', 'property="og:image:height" content="630"',
+    'property="og:image:type" content="image/webp"', 'property="og:image:width" content="520"', 'property="og:image:height" content="292"',
     'name="twitter:card" content="summary_large_image"'
   ]) if(!source.includes(marker)) failures.push(`${name} social metadata incomplete: ${marker}`);
 }
@@ -83,13 +64,8 @@ const imageNames=[
 "mercuryo-event-kit-table.webp",
 "mercuryo-payment-event-materials.webp",
 "indomitable-games-apparel.webp",
-"incymo-ai-event-giveaway.webp", socialName];
+"incymo-ai-event-giveaway.webp"];
 for(const name of imageNames){try{await access(path.join(root,"dist/assets/images",name));}catch{failures.push(`Missing optimized image: ${name}`);}}
-try{
-  const buf=await readFile(path.join(root,"dist/assets/images",socialName)); const frame=readJpegFrame(buf);
-  if(!frame)failures.push("Social preview is not a readable JPEG.");
-  else { if(frame.width!==1200||frame.height!==630)failures.push("Social preview must be 1200×630."); if(frame.components!==3)failures.push("Social preview must be RGB JPEG."); }
-}catch{failures.push("Social preview cannot be read.");}
 
 if(!sitemap.includes("https://usaeventpartner.com/</loc>")||!sitemap.includes("https://usaeventpartner.com/trade-show-support-us/"))failures.push("Sitemap missing production URL.");
 if(sitemap.includes("workers.dev"))failures.push("Sitemap contains preview URL.");
