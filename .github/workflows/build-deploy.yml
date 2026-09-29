@@ -37,13 +37,13 @@ jobs:
         run: npm run test:worker
 
       - name: Validate production configuration
-        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' && env.GA4_MEASUREMENT_ID != ''
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
         run: npm run check:production
 
       - name: Deploy to Cloudflare Workers
-        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' && env.GA4_MEASUREMENT_ID != ''
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
         run: npx wrangler deploy
 
       - name: Production configuration missing
-        if: env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == '' || env.GA4_MEASUREMENT_ID == ''
-        run: echo "::warning::Build passed, but deployment was skipped because Cloudflare credentials and/or GA4_MEASUREMENT_ID are not configured."
+        if: env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == ''
+        run: echo "::warning::Build passed, but deployment was skipped because Cloudflare credentials are not configured."
