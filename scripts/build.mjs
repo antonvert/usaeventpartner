@@ -16,7 +16,7 @@ const esc = (value) => String(value)
   .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
   .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 const imageUrl = (name) => `/assets/images/${name}.webp`;
-const socialImage = `${site.url}/assets/images/og-usa-event-partner.jpg`;
+const socialImage = `${site.url}/assets/images/hero-new-york-event-support.webp`;
 
 const picture = ({ item, eager = false, className = "" }) => `
 <picture class="${className}">
@@ -164,9 +164,9 @@ function documentShell({ title, description, canonical, body, schemaData, preloa
   <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="${socialImage}">
   <meta property="og:image:secure_url" content="${socialImage}">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="520">
+  <meta property="og:image:height" content="292">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="${socialImage}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
