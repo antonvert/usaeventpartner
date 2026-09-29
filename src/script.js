@@ -58,9 +58,17 @@ document.querySelectorAll("[data-observe-event]").forEach((element) => observer?
 
 document.querySelectorAll("[data-lead-form]").forEach((form) => {
   const startedAt = form.querySelector("[data-started-at]");
-  if (startedAt) startedAt.value = String(Date.now());
+  const startFormSession = () => {
+    if (!startedAt) return;
+    const value = String(Date.now());
+    startedAt.value = value;
+    startedAt.setAttribute("value", value);
+  };
+  startFormSession();
+  window.addEventListener("pageshow", startFormSession);
   let formStarted = false;
   form.addEventListener("focusin", () => {
+    if (!startedAt?.value) startFormSession();
     if (!formStarted) {
       formStarted = true;
       track("form_start", { page: form.querySelector('[name="page"]')?.value || "unknown" });
@@ -93,7 +101,7 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
       status.textContent = "Thanks — your brief is on its way. We’ll come back with the next practical step.";
       status.classList.add("is-success");
       form.reset();
-      if (startedAt) startedAt.value = String(Date.now());
+      startFormSession();
     } catch (error) {
       status.textContent = "We couldn’t send the brief. Please email order@swaggy.agency directly.";
       status.classList.add("is-error");

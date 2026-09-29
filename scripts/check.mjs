@@ -51,6 +51,7 @@ if(!home.includes('fetchpriority="high"')||!home.includes('rel="preload" as="ima
 if(!home.includes('type="image/webp"')||!home.includes('srcset=')||!home.includes('sizes='))failures.push("Responsive WebP/JPEG picture markup is missing.");
 if(!home.includes('imagesrcset=')||!home.includes('imagesizes='))failures.push("Responsive hero preload is incomplete.");
 if(count(home,/loading="lazy"/g)<6)failures.push("Below-fold photography must be lazy loaded.");
+if(!client.includes('startedAt.setAttribute("value", value)')||!client.includes('window.addEventListener("pageshow", startFormSession)'))failures.push("Lead form session timestamp is not resilient to browser form-state restoration.");
 
 for(const event of ["hero_cta_click","header_cta_click","form_start","form_submit","telegram_click","email_click","project_gallery_view","service_cta_click","emergency_cta_click"]) if(!home.includes(event)&&!client.includes(event))failures.push(`Analytics event missing: ${event}`);
 const ga=home.match(/<meta name="ga4-measurement-id" content="([^"]*)">/)?.[1]||"";

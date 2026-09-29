@@ -8,10 +8,11 @@
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
     "check:production": "REQUIRE_GA4=1 node scripts/check.mjs",
+    "test:client": "node scripts/test-client.mjs",
     "test:worker": "node scripts/test-worker.mjs",
     "dev": "npm run build && wrangler dev --var LOCAL_DEV:true",
-    "deploy:preview": "npm run build && npm run check && npm run test:worker && wrangler deploy --config wrangler.preview.jsonc",
-    "deploy:production": "npm run build && npm run check:production && npm run test:worker && wrangler deploy"
+    "deploy:preview": "npm run build && npm run check && npm run test:client && npm run test:worker && wrangler deploy --config wrangler.preview.jsonc",
+    "deploy:production": "npm run build && npm run check:production && npm run test:client && npm run test:worker && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
