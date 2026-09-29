@@ -213,20 +213,20 @@ const homepage = documentShell({
         </div>
       </section>
 
-      <section class="section services-section" id="services">
-        <div class="section-heading">
-          <div><p class="eyebrow eyebrow--dark">ONE PARTNER, FLEXIBLE SCOPE</p><h2>Everything around your US event.</h2></div>
-          <p>Use one service, combine several local workstreams or hand over the full US execution. The model is deliberately modular.</p>
-        </div>
-        <div class="service-grid">${serviceMarkup}</div>
-      </section>
-
       <section class="section projects-section" id="work" data-observe-event="project_gallery_view">
         <div class="section-heading">
           <div><p class="eyebrow eyebrow--dark">SELECTED PRODUCTION WORK</p><h2>Real event assets. Real on-site execution.</h2></div>
           <p>Examples across branded hospitality, conference materials, merchandise and event giveaways.</p>
         </div>
         <div class="project-grid">${galleryMarkup}</div>
+      </section>
+
+      <section class="section services-section" id="services">
+        <div class="section-heading">
+          <div><p class="eyebrow eyebrow--dark">ONE PARTNER, FLEXIBLE SCOPE</p><h2>Everything around your US event.</h2></div>
+          <p>Use one service, combine several local workstreams or hand over the full US execution. The model is deliberately modular.</p>
+        </div>
+        <div class="service-grid">${serviceMarkup}</div>
       </section>
 
       <section class="section local-section">
