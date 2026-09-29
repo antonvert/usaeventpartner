@@ -1,9 +1,9 @@
 export const site = {
   name: "USA Event Partner",
   url: "https://usaeventpartner.com",
-  title: "US Event Production & Trade Show Support | USA Event Partner",
+  title: "US Event Production & Local Support | USA Event Partner",
   description:
-    "One US event partner for international brands and agencies: trade shows, activations, merchandise, staffing, print, AV, logistics and on-site support.",
+    "Local US event production for international brands and agencies: trade shows, activations, merchandise, print, staffing, AV, logistics and on-site support.",
   email: "order@swaggy.agency",
   telegramUrl: "https://t.me/swaggyagency",
   telegramLabel: "@swaggyagency",
@@ -22,52 +22,52 @@ export const services = [
   },
   {
     number: "02",
-    title: "Event & Brand Activation Production",
+    title: "Brand Activations & Side Events",
     short: "Activations",
     description:
-      "Venue sourcing, production, event branding, AV, furniture, catering coordination, entertainment, staffing, registration and on-site management."
+      "Venues, production, branding, AV, furniture, catering, entertainment, staffing and on-site management for launches, receptions, pop-ups and conference side events."
   },
   {
     number: "03",
     title: "Merchandise & Event Kits",
     short: "Merchandise",
     description:
-      "US production and fulfillment of branded merchandise, apparel, gifts, welcome kits, influencer boxes, speaker gifts and printed materials."
+      "Branded merchandise, apparel, giveaways, VIP gifts, speaker gifts, kits and printed materials produced and fulfilled in the US."
   },
   {
     number: "04",
     title: "Event Branding & Print",
     short: "Print & branding",
     description:
-      "Fast local production of signage, banners, backdrops, step-and-repeats, branded walls, vinyl graphics, badges and event collateral."
+      "Signage, backdrops, step-and-repeats, vinyl, decals, badges, menus, event collateral and large-format print produced locally."
   },
   {
     number: "05",
-    title: "Local Staffing & On-site Support",
+    title: "Staffing & On-site Support",
     short: "Local teams",
     description:
-      "Event producers, coordinators, stagehands, AV technicians, brand ambassadors, registration teams, runners and photo/video crews."
+      "Producers, coordinators, stagehands, AV technicians, brand ambassadors, registration teams, runners and photo/video crews."
   },
   {
     number: "06",
     title: "US Event Concierge",
     short: "On-call operator",
     description:
-      "A reliable local contact for international teams that already run their own event but need fast help with suppliers, equipment, print, staff or logistics."
+      "One local contact for the things that come up once your team lands: print, staff, equipment, transport, suppliers and last-minute production."
   },
   {
     number: "07",
-    title: "Full-service US Event Production",
+    title: "Full-service Event Production",
     short: "Turnkey execution",
     description:
-      "Planning, venue, budget, vendors, production, branding, merchandise, staffing, logistics, on-site management and breakdown through one accountable team."
+      "Planning, venues, suppliers, production, branding, merchandise, staffing, logistics, event-day management and breakdown through one local team."
   },
   {
     number: "08",
-    title: "Last-minute & Emergency Support",
+    title: "Last-minute Event Support",
     short: "Urgent support",
     description:
-      "Urgent printing, replacement production, merchandise, staffing, equipment rental and logistics when a US event is close and something is still missing."
+      "Urgent print, replacement merchandise, staffing, equipment and local production when the event is close and something is still missing."
   }
 ];
 
@@ -146,33 +146,33 @@ export const gallery = [
 
 export const reasons = [
   {
-    title: "One US point of contact",
+    title: "One point of contact",
     description:
-      "Instead of managing a different local supplier for every line item, keep one accountable team across production, staffing and logistics."
+      "One person to call across production, staffing, logistics and delivery."
   },
   {
     title: "Produce locally",
     description:
-      "Make merchandise, print and event assets in the US when that is faster and more practical than shipping international production into the country."
+      "Produce print, merchandise and event materials in the US when shipping them in is slower, more expensive or simply unnecessary."
   },
   {
-    title: "Deliver where the event is",
+    title: "Deliver where you need it",
     description:
-      "Coordinate delivery to the venue, booth, hotel, office or another agreed receiving point, subject to local access and venue rules."
+      "Venue, booth, hotel, office or another agreed receiving point, subject to local access and venue rules."
   },
   {
-    title: "Add only what you need",
+    title: "Use only what you need",
     description:
-      "Use the team for one urgent production task, a local crew, a complete exhibitor scope or full turnkey event execution."
+      "Bring us in for one urgent task, a local crew, a full exhibitor scope or end-to-end production."
   }
 ];
 
 export const steps = [
-  ["01", "Brief", "Share the event, city, dates, objectives and the pieces you already have covered."],
-  ["02", "US scope", "We map the local production, suppliers, crew, logistics and timing needed for the job."],
-  ["03", "Production", "Approved items move into local sourcing, fabrication, printing, rentals and staffing."],
-  ["04", "On-site", "The local team coordinates delivery, installation, suppliers and event-day support where required."],
-  ["05", "Wrap", "Breakdown, returns, storage, post-event logistics and the next US project are handled in one flow."]
+  ["01", "Brief", "Send the event, city, dates, deadline and what your team already has covered."],
+  ["02", "Local plan", "We define the suppliers, production, crew, logistics and timing needed in the US."],
+  ["03", "Approval", "You approve the key options, costs and timeline before production starts."],
+  ["04", "Production & on-site", "We coordinate sourcing, production, staffing, delivery and on-site work."],
+  ["05", "Wrap", "Breakdown, returns, storage and post-event logistics are handled if needed."]
 ];
 
 export const faqs = [
@@ -219,9 +219,9 @@ export const tradeShowPage = {
   description:
     "US trade show support for international exhibitors: booth production, graphics, rentals, AV, staffing, freight, drayage coordination, merchandise and on-site help.",
   eyebrow: "US TRADE SHOW SUPPORT",
-  h1: "A Local US Team Behind Your Trade Show Booth",
+  h1: "Your Local Production Team for US Trade Shows",
   lead:
-    "One partner to coordinate the local production, vendors, crew, merchandise and logistics your international team needs to exhibit in the United States.",
+    "Booth production, graphics, rentals, AV, staffing, freight, drayage, merchandise and on-site coordination through one US partner.",
   bullets: [
     "Booth production and installation",
     "Graphics, print and branding",
