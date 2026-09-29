@@ -9,7 +9,7 @@ export const site = {
   telegramLabel: "@swaggyagency",
   poweredByUrl: "https://swaggy.agency",
   privacyUrl: "https://swaggy.agency/en/privacy-policy",
-  gaMeasurementId: process.env.GA4_MEASUREMENT_ID || ""
+  gaMeasurementId: process.env.GA4_MEASUREMENT_ID || "G-VHNPMLF6QX"
 };
 
 export const services = [
