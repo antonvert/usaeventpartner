@@ -24,7 +24,7 @@ Primary positioning:
 - `src/content.mjs` — positioning, services, projects, FAQ and contact details
 - `src/styles.css` — responsive Corporate US × Network design system
 - `src/script.js` — navigation, privacy-safe analytics events and lead-form states
-- `src/assets/images` — optimized WebP project photography plus social preview
+- `src/assets/images` — optimized WebP project photography; the New York hero is also used as the social preview
 - `src/_worker.js` — canonical redirect, preview noindex and email lead delivery
 - `scripts/build.mjs` — dependency-free static HTML build and structured-data generation
 - `scripts/check.mjs` — production anti-regression, SEO, asset and Cloudflare checks
