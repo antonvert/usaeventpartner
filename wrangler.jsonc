@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "usa-event-partner",
+  "main": "src/_worker.js",
+  "compatibility_date": "2026-09-17",
+  "routes": [
+    { "pattern": "usaeventpartner.com", "custom_domain": true },
+    { "pattern": "www.usaeventpartner.com", "custom_domain": true }
+  ],
+  "send_email": [
+    { "name": "LEAD_EMAIL", "destination_address": "order@swaggy.agency" }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/*"]
+  },
+  "observability": { "enabled": true }
+}
