@@ -58,8 +58,8 @@ const header = ({ internal = false } = {}) => {
 const leadForm = ({ context = "homepage" } = {}) => `<section class="brief-section" id="brief">
   <div class="brief-section__copy">
     <p class="eyebrow eyebrow--light">START A US PROJECT</p>
-    <h2>Tell us what is happening in the US.</h2>
-    <p>Send the event, city, dates and the local pieces you need. A rough brief is enough to start.</p>
+    <h2>Tell us about the event. We’ll work out the local part.</h2>
+    <p>Send the city, dates, deadline and whatever you already know. A rough brief is enough to start.</p>
     <div class="direct-contact">
       <span>Prefer a direct message?</span>
       <a href="${site.telegramUrl}" target="_blank" rel="noopener" data-event="telegram_click" data-event-label="${context}">Telegram · ${site.telegramLabel}</a>
@@ -98,7 +98,7 @@ const footer = () => `<footer class="site-footer">
 const faqMarkup = (items) => items.map((item) => `<details class="faq-item"><summary>${esc(item.question)}</summary><p>${esc(item.answer)}</p></details>`).join("");
 const serviceMarkup = services.map((item) => `<article class="service-card">
   <span>${item.number}</span><h3>${esc(item.title)}</h3><p>${esc(item.description)}</p>
-  <a href="#brief" data-event="service_cta_click" data-event-label="${esc(item.short)}">Discuss this scope ↗</a>
+  <a href="#brief" data-event="service_cta_click" data-event-label="${esc(item.short)}">Discuss This Service ↗</a>
 </article>`).join("");
 const galleryMarkup = gallery.map((item) => `<figure class="project-card ${item.className}">
   ${picture({ item }).trim()}
@@ -209,14 +209,14 @@ const homepage = documentShell({
     <main id="main">
       <section class="hero">
         <div class="hero__copy">
-          <p class="eyebrow">US EVENT PRODUCTION FOR INTERNATIONAL TEAMS</p>
-          <h1>You bring the event. We handle the US.</h1>
-          <p class="hero__lead">One local partner for trade shows, brand activations, merchandise, staffing, print, AV and logistics across the United States.</p>
+          <p class="eyebrow">US EVENT SUPPORT FOR INTERNATIONAL BRANDS & AGENCIES</p>
+          <h1>Your local event team in the US.</h1>
+          <p class="hero__lead">From trade shows and brand activations to merchandise, print, staffing, AV and logistics, one local team coordinates the work you do not want to manage from abroad. Use us for one task or the whole local production.</p>
           <div class="hero__actions">
             <a class="button button--light" href="#brief" data-event="hero_cta_click">Send Your Brief <span aria-hidden="true">↗</span></a>
-            <a class="button button--outline" href="#services">Explore Services</a>
+            <a class="button button--outline" href="#services">See What We Handle</a>
           </div>
-          <ul class="proof-line"><li>Trade shows</li><li>Activations</li><li>Merchandise</li><li>On-site support</li></ul>
+          <ul class="proof-line"><li>Trade shows</li><li>Activations</li><li>Merchandise & print</li><li>Staffing & logistics</li></ul>
         </div>
         <div class="hero__visual">
           ${picture({ item: gallery[0], sizes: heroSizes, eager: true, className: "hero__picture" }).trim()}
@@ -226,24 +226,24 @@ const homepage = documentShell({
 
       <section class="section projects-section" id="work" data-observe-event="project_gallery_view">
         <div class="section-heading">
-          <div><p class="eyebrow eyebrow--dark">SELECTED PRODUCTION WORK</p><h2>Real event assets. Real on-site execution.</h2></div>
-          <p>Examples across branded hospitality, conference materials, merchandise and event giveaways.</p>
+          <div><p class="eyebrow eyebrow--dark">SELECTED WORK</p><h2>Event production in the real world.</h2></div>
+          <p>Branded environments, merchandise, hospitality and conference materials produced for live events and international teams.</p>
         </div>
         <div class="project-grid">${galleryMarkup}</div>
       </section>
 
       <section class="section services-section" id="services">
         <div class="section-heading">
-          <div><p class="eyebrow eyebrow--dark">ONE PARTNER, FLEXIBLE SCOPE</p><h2>Everything around your US event.</h2></div>
-          <p>Use one service, combine several local workstreams or hand over the full US execution. The model is deliberately modular.</p>
+          <div><p class="eyebrow eyebrow--dark">ONE PARTNER, FLEXIBLE SCOPE</p><h2>Use one service. Or hand over the whole US side.</h2></div>
+          <p>We plug into your existing team, agency or event plan and take care of the local pieces you do not want to source and manage yourself.</p>
         </div>
         <div class="service-grid">${serviceMarkup}</div>
       </section>
 
       <section class="section local-section">
         <div class="section-heading">
-          <div><p class="eyebrow eyebrow--dark">WHY A LOCAL US PARTNER</p><h2>Fewer vendors to manage from another time zone.</h2></div>
-          <p>Keep the international team focused on the event while one US point of contact coordinates the local execution.</p>
+          <div><p class="eyebrow eyebrow--dark">WHY WORK LOCALLY</p><h2>Less supplier chasing. More control.</h2></div>
+          <p>One US partner replaces a chain of separate local vendors and keeps deadlines, handoffs and responsibilities in one place.</p>
         </div>
         <div class="reason-grid">${reasonsMarkup}</div>
       </section>
@@ -251,10 +251,10 @@ const homepage = documentShell({
       <section class="concierge" id="concierge">
         <div class="concierge__copy">
           <p class="eyebrow eyebrow--dark">US EVENT CONCIERGE</p>
-          <h2>Your local event team in the US.</h2>
-          <p>Already managing the event yourself? Keep a reliable local operator on call for the things that become urgent once the team lands.</p>
+          <h2>A local operator on call while your team is in the US.</h2>
+          <p>Already managing the event yourself? Keep one local contact for the problems that are hard to solve from another country or another time zone. Need extra staff, urgent printing, equipment, transport, merchandise or a supplier tomorrow? Start with one message.</p>
           <ul class="concierge__list"><li>Local suppliers</li><li>Urgent printing</li><li>Extra staffing</li><li>Equipment & rentals</li><li>Merchandise</li><li>Transportation coordination</li></ul>
-          <a class="button button--navy" href="#brief" data-event="concierge_cta_click">Book Local Support ↗</a>
+          <a class="button button--navy" href="#brief" data-event="concierge_cta_click">Get Local Support ↗</a>
         </div>
         <div class="concierge__visual">
           ${picture({ item: gallery[1], sizes: conciergeSizes, className: "concierge__picture" }).trim()}
@@ -263,9 +263,9 @@ const homepage = documentShell({
       </section>
 
       <section class="emergency">
-        <div><p class="eyebrow">LAST-MINUTE EVENT SUPPORT</p><h2>Event next week and still missing a supplier?</h2></div>
+        <div><p class="eyebrow">LAST-MINUTE EVENT SUPPORT</p><h2>Something missing before the event?</h2></div>
         <div class="emergency__copy">
-          <p>Send the city, deadline and exact problem. We will tell you quickly what can still be produced, staffed, rented or coordinated locally.</p>
+          <p>Send us the city, date and exact problem. We will quickly tell you what can still be printed, produced, staffed, rented or delivered locally.</p>
           <a class="button button--light" href="#brief" data-event="emergency_cta_click">Send an Urgent Brief ↗</a>
           <div class="emergency__examples"><span>Urgent print & signage</span><span>Replacement merchandise</span><span>Local staff & runners</span><span>Equipment & logistics</span></div>
         </div>
@@ -273,14 +273,14 @@ const homepage = documentShell({
 
       <section class="section process-section" id="process">
         <div class="section-heading">
-          <div><p class="eyebrow eyebrow--dark">HOW IT WORKS</p><h2>One accountable flow on the ground.</h2></div>
-          <p>From the international brief to the last box leaving the venue, the US scope stays in one operating line.</p>
+          <div><p class="eyebrow eyebrow--dark">HOW IT WORKS</p><h2>One brief. One local plan. One accountable team.</h2></div>
+          <p>From the first brief to breakdown, the local US work stays with one team.</p>
         </div>
         <ol class="process-list">${stepsMarkup}</ol>
       </section>
 
       <section class="section faq-section">
-        <div class="faq-section__heading"><p class="eyebrow eyebrow--dark">PRACTICAL ANSWERS</p><h2>US event support FAQ</h2><p>What international event and marketing teams usually need to know before they start.</p></div>
+        <div class="faq-section__heading"><p class="eyebrow eyebrow--dark">PRACTICAL ANSWERS</p><h2>US event support FAQ</h2><p>What international brands, agencies and event teams usually need to know before they start.</p></div>
         <div class="faq-list">${faqMarkup(faqs)}</div>
       </section>
 
@@ -316,16 +316,16 @@ const tradeHtml = documentShell({
           <div class="hero__actions"><a class="button button--light" href="#brief" data-event="hero_cta_click">Send Your Booth Brief ↗</a><a class="button button--outline" href="/#work">See Production Work</a></div>
           <ul class="proof-line"><li>Booth production</li><li>Local crews</li><li>Freight coordination</li><li>On-site support</li></ul>
         </div>
-        <div class="hero__visual">${picture({ item: gallery[0], sizes: heroSizes, eager: true, className: "hero__picture" }).trim()}<div class="hero__caption"><span>US exhibitor support</span><strong>One local operating layer</strong></div></div>
+        <div class="hero__visual">${picture({ item: gallery[0], sizes: heroSizes, eager: true, className: "hero__picture" }).trim()}<div class="hero__caption"><span>US exhibitor support</span><strong>One local production team</strong></div></div>
       </section>
 
       <section class="section vertical-intro">
-        <div><p class="eyebrow eyebrow--dark">FULL OR MODULAR SUPPORT</p><h2>Bring the booth plan. Add the US execution.</h2></div>
-        <div><p>Keep your global agency, creative team and brand standards. We coordinate the local production and venue-facing pieces that are easier to solve in the United States.</p><ul class="vertical-list">${tradeShowPage.bullets.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div>
+        <div><p class="eyebrow eyebrow--dark">FULL OR MODULAR SUPPORT</p><h2>Keep your booth plan. Add the local US production.</h2></div>
+        <div><p>Keep your global agency, creative team and brand standards. We handle the local production, suppliers, crews and venue-facing details in the US.</p><ul class="vertical-list">${tradeShowPage.bullets.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div>
       </section>
 
       <section class="section local-section">
-        <div class="section-heading"><div><p class="eyebrow eyebrow--dark">LOCAL PRODUCTION LAYER</p><h2>One team between the brief and show floor.</h2></div><p>Production, rentals, official contractor requirements, crew and delivery are coordinated around the show schedule rather than as separate vendor conversations.</p></div>
+        <div class="section-heading"><div><p class="eyebrow eyebrow--dark">LOCAL PRODUCTION PARTNER</p><h2>Fewer local vendors. One show-floor plan.</h2></div><p>Production, rentals, official-contractor requirements, crew and delivery stay coordinated around the show schedule.</p></div>
         <div class="reason-grid">${reasonsMarkup}</div>
       </section>
 
