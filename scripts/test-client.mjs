@@ -17,6 +17,7 @@ const form = {
   addEventListener(name, handler) { formListeners.set(name, handler); }
 };
 const window = {
+  location: { hostname: "localhost" },
   addEventListener(name, handler) { listeners.set(name, handler); }
 };
 const document = {
