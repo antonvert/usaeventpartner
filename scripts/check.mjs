@@ -56,6 +56,8 @@ if(count(home,/loading="lazy"/g)<6)failures.push("Below-fold photography must be
 if(!client.includes('startedAt.setAttribute("value", value)')||!client.includes('window.addEventListener("pageshow", startFormSession)'))failures.push("Lead form session timestamp is not resilient to browser form-state restoration.");
 
 for(const event of ["hero_cta_click","header_cta_click","form_start","form_submit","telegram_click","email_click","project_gallery_view","service_cta_click","emergency_cta_click"]) if(!home.includes(event)&&!client.includes(event))failures.push(`Analytics event missing: ${event}`);
+for(const event of ["generate_lead","click_email","click_phone","click_messenger","click_booking"]) if(!client.includes(event))failures.push(`Canonical analytics event missing: ${event}`);
+if(!client.includes("analytics_storage")||!client.includes("analytics-consent"))failures.push("Consent-gated analytics is missing.");
 const ga=home.match(/<meta name="ga4-measurement-id" content="([^"]*)">/)?.[1]||"";
 if(ga&&!/^G-[A-Z0-9]{6,}$/.test(ga))failures.push("GA4 measurement ID has invalid format.");
 if(!ga)warnings.push("GA4_MEASUREMENT_ID is not set; production deploy should wait for a dedicated stream unless analytics is intentionally disabled.");
